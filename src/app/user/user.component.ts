@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, EventEmitter, Input, input, output, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -10,16 +10,31 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css'
 })
 
+///// without using signals
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex])
-  imageUrl = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+  @Output() select = new EventEmitter<string>();  // when using output decorator
 
-  // get imageUrl() {
-  //   return 'assets/users/' + this.selectedUser.avatar;
-  // }
+  get imageUrl() {
+    return 'assets/users/' + this.avatar;
+  }
 
   onSelectUser() {
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.selectedUser.set(DUMMY_USERS[randomIndex]);
+    this.select.emit(this.id);
   }
 }
+
+/////// while using signals
+// export class UserComponent {
+
+//   avatar = input.required<string>();
+//   name = input.required<string>();
+//   imageUrl = computed(() => 'assets/users/' + this.avatar);
+//   select = output<string>();  // when not using output decorator (generally used with signals but not nessesary)
+
+//   onSelectUser() {
+//     this.select.emit(this.id);
+//   }
+// }
