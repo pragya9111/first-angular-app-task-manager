@@ -23,6 +23,7 @@ interface User {
 ///// without using signals
 export class UserComponent {
   @Input({ required: true }) user!: User;
+  @Input({ required: true }) selected!: boolean;
   @Output() select = new EventEmitter<string>();  // when using output decorator
 
   get imageUrl() {
