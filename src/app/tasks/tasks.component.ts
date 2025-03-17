@@ -28,21 +28,13 @@ export class TasksComponent {
 
   get selectedUserTasks() {
     return this.tasksService.getUserTasks(this.userId);
-
-  }
-
-  onCompleteTask(id: string) {
   }
 
   onAddTaskDialog() {
     this.isAddTaskVisible = true
   }
 
-  onCancelAddTask() {
-    this.isAddTaskVisible = false;
-  }
-
-  onAddTask(taskData: NewTaskData) {
+  onCloseAddTask() {
     this.isAddTaskVisible = false;
   }
 }
