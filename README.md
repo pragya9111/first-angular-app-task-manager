@@ -12,6 +12,10 @@ npm start
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Live Preview
+
+Check out the live version of the project! [View Live Demo](https://first-angular-app-task-manager.vercel.app/)
+
 ## Project Structure
 
 The project has the following structure:
